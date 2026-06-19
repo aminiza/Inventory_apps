@@ -38,7 +38,7 @@
 
     <div class="mt-6 flex space-x-3">
         <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Simpan Transaksi</button>
-        <a href="<?= base_url('/stok') ?>" class="px-4 py-2 bg-gray-500 text-white rounded">Batal</a>
+        <a href="<?= base_url('/petugas/stok') ?>" class="px-4 py-2 bg-gray-500 text-white rounded">Batal</a>
     </div>
 </form>
 
