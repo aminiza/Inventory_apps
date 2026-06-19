@@ -42,7 +42,7 @@ class Barang extends BaseController
             // 'pager' => $pager,
         ];
 
-        return view('partials/barang_table', $data);
+        return view('admin/barang/index', $data);
     }
 
     public function create()
