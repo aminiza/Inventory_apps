@@ -28,7 +28,7 @@
                 </div>
                 <div>
                     <p><span class="font-semibold">Harga Beli:</span> Rp <?= number_format($barang['harga_beli'] ?? 0, 0, ',', '.') ?></p>
-                    <p><span class="font-semibold">Harga Jual:</span> Rp <?= number_format($barang['harga_jula'] ?? 0, 0, ',', '.') ?></p>
+                    <p><span class="font-semibold">Harga Jual:</span> Rp <?= number_format($barang['harga_jual'] ?? 0, 0, ',', '.') ?></p>
                 </div>
             </div>
 
