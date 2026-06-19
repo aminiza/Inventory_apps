@@ -39,6 +39,7 @@
         const resetInput = document.getElementById('resetInput');
         let searchTimeout;
 
+        resetInput.classList.add('hidden');
         const performSearch = (searchTerm = '', page = 1) => {
             // Update URL
             const url = new URL(window.location);
