@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= esc($title ?? 'Inventory App') ?> - InventoryApp</title>
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <!-- Tailwind via CDN -->
-    <script src="https://cdn.tailwindcss.com"></script> 
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -19,6 +22,7 @@
         }
     </script>
 </head>
+
 <body class="bg-gray-100">
     <!-- Navbar - Fixed Top -->
     <nav class="fixed top-0 left-0 right-0 z-40 bg-white shadow-md h-16">
@@ -43,20 +47,38 @@
     <aside id="sidebar" class="fixed top-16 left-0 z-30 w-64 h-[calc(100vh-4rem)] bg-white border-r overflow-y-auto hidden md:block">
         <ul class="p-4 space-y-2">
             <li>
-                <a href="<?= base_url('/') ?>" class="block px-4 py-2 rounded <?= current_url() == base_url('/') ? 'bg-blue-100 text-primary' : 'hover:bg-gray-100' ?>">🏠 Dashboard</a>
+                <a href="<?= base_url('/') ?>" class="block px-4 py-2 rounded text-gray-600 font-semibold <?= current_url() == base_url('/') ? 'bg-blue-100 text-primary' : 'hover:bg-gray-100' ?>">
+                    <span class="flex items-center gap-2">
+                        <i class="bi bi-house-door-fill"></i> Dashboard</a>
+                </span>
             </li>
             <li>
-                <a href="<?= session()->get('role') == 'admin' ? base_url('/admin/barang') : base_url('/barang') ?>" class="block px-4 py-2 rounded <?= strpos(current_url(), '/barang') === 0 && !strpos(current_url(), '/kategori') ? 'bg-blue-100 text-primary' : 'hover:bg-gray-100' ?>">📦 Barang</a>
+                <a href="<?= session()->get('role') == 'admin' ? base_url('admin/barang') : base_url('barang') ?>"
+                    class="block px-4 py-2 rounded text-gray-600 font-semibold <?= (url_is('*barang*') && !url_is('*kategori*')) ? 'bg-blue-100 text-primary' : 'hover:bg-gray-100' ?>">
+                    <span class="flex items-center gap-2">
+                        <i class="bi bi-box-fill"></i> Barang
+                    </span>
+                </a>
             </li>
+
             <li>
-                <a href="<?= base_url('petugas/stok') ?>" class="block px-4 py-2 rounded <?= strpos(current_url(), '/stok') === 0 ? 'bg-blue-100 text-primary' : 'hover:bg-gray-100' ?>">📥 Transaksi Stok</a>
+                <a href="<?= base_url('petugas/stok') ?>" class="block px-4 py-2 rounded text-gray-600 font-semibold <?= (url_is('*stok*')) ? 'bg-blue-100 text-primary' : 'hover:bg-gray-100' ?>">
+                    <span class="flex items-center gap-2">
+                        <i class="bi bi-box-arrow-in-down"></i> Transaksi Stok</a>
+                </span>
             </li>
             <?php if (session()->get('role') == 'admin'): ?>
                 <li>
-                    <a href="<?= base_url('admin/barang/create') ?>" class="block px-4 py-2 rounded text-green-600 hover:bg-green-50">➕ Tambah Barang</a>
+                    <a href="<?= base_url('admin/barang/create') ?>" class="block px-4 py-2 rounded text-green-600 hover:bg-green-50">
+                        <span class="flex items-center gap-2">
+                            <i class="bi bi-plus-square-fill"></i> Tambah Barang</a>
+                    </span>
                 </li>
                 <li>
-                    <a href="<?= base_url('admin/kategori') ?>" class="block px-4 py-2 rounded <?= strpos(current_url(), '/kategori') === 0 ? 'bg-blue-100 text-primary' : 'hover:bg-gray-100' ?>">🗂️ Kategori</a>
+                    <a href="<?= base_url('admin/kategori') ?>" class="block px-4 py-2 rounded text-gray-600 font-semibold <?= (url_is('*kategori*')) ? 'bg-blue-100 text-primary' : 'hover:bg-gray-100' ?>">
+                        <span class="flex items-center gap-2">
+                            <i class="bi bi-folder2-open"></i> Kategori</a>
+                    </span>
                 </li>
             <?php endif; ?>
         </ul>
@@ -102,4 +124,5 @@
         });
     </script>
 </body>
+
 </html>
