@@ -17,6 +17,7 @@
                     <th class="px-6 py-3 text-left text-xs font- medium text-gray-500 uppercase tracking-wider">Tipe</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Jumlah</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Keterangan</th>
+                    <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
                 </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
@@ -31,28 +32,38 @@
                     </tr>
                 <?php else: ?>
                     <?php foreach ($transaksi as $t): ?>
-                    <tr class="hover:bg-gray-50 transition-colors">
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <div class="text-sm font-medium text-gray-900"><?= esc($t['tanggal_transaksi']) ?></div>
-                            <div class="text-sm text-gray-500"><?= esc($t['created_at']) ?></div>
-                        </td>
-                        <td class="px-6 py-4">
-                            <div class="text-sm font-medium text-gray-900"><?= esc($t['kode_barang']) ?></div>
-                            <div class="text-sm text-gray-500"><?= esc($t['nama_barang']) ?></div>
-                        </td>
-                        <td class="px-6 py-4">
-                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
+                        <tr class="hover:bg-gray-50 transition-colors">
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm font-medium text-gray-900"><?= esc($t['tanggal_transaksi']) ?></div>
+                                <div class="text-sm text-gray-500"><?= esc($t['created_at']) ?></div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="text-sm font-medium text-gray-900"><?= esc($t['kode_barang']) ?></div>
+                                <div class="text-sm text-gray-500"><?= esc($t['nama_barang']) ?></div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
                                 <?= $t['tipe_transaksi'] === 'masuk' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' ?>">
-                                <?= $t['tipe_transaksi'] === 'masuk' ? 'Masuk' : 'Keluar' ?>
-                            </span>
-                        </td>
-                        <td class="px-6 py-4 text-sm text-gray-900 font-medium">
-                            <?= esc($t['jumlah']) ?>
-                        </td>
-                        <td class="px-6 py-4 text-sm text-gray-700">
-                            <?= esc($t['keterangan'] ?? '—') ?>
-                        </td>
-                    </tr>
+                                    <?= $t['tipe_transaksi'] === 'masuk' ? 'Masuk' : 'Keluar' ?>
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-gray-900 font-medium">
+                                <?= esc($t['jumlah']) ?>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-gray-700">
+                                <?= esc($t['keterangan'] ?? '—') ?>
+                            </td>
+                            <td class="px-6 py-4 text-sm">
+                                <div class="flex items-center gap-2">
+                                    <a class="px-3 py-2 bg-red-100 rounded-sm text-red-600" href="/petugas/stok/delete/<?= $t['id_transaksi'] ?>" onclick="return confirm('Yakin ingin menghapus')">
+                                        <i class="bi bi-trash"></i>
+                                    </a>
+                                    <a class="px-3 py-2 bg-indigo-100 rounded-sm text-indigo-600" href="/petugas/stok/edit/<?= $t['id_transaksi'] ?>">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
                     <?php endforeach; ?>
                 <?php endif; ?>
             </tbody>

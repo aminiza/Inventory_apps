@@ -7,7 +7,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
             <label class="block text-gray-700 mb-1">Barang</label>
-            <select name="id_barang" class="w-full px-3 py-2 border rounded">
+            <select name="id_barang" class="w-full max-w-xs px-3 py-2 border rounded truncate">
                 <option value="">-- Pilih Barang --</option>
                 <?php foreach ($barang as $b) : ?>
                     <option value="<?= $b['id_barang'] ?>"><?= esc($b['kode_barang']) ?> - <?= esc($b['nama_barang']) ?> (Stok: <?= $b['stok'] ?>)</option>

@@ -81,6 +81,25 @@ class Stok extends BaseController
         return redirect()->to('/petugas/stok')->with('success', 'Transaksi stok berhasil di catat.');
     }
 
+    public function edit($id) 
+    {
+        $transaksi = (new TransaksiModel())->find($id);
+        $barang = (new BarangModel())->findAll();
+        $data = [
+            'title' => 'Edit Transaksi',
+            'transaksi' => $transaksi,
+            'barang' => $barang
+        ];
+
+        return view('petugas/stok/edit', $data);
+    }
+
+    public function update($id)
+    {
+        (new TransaksiModel())->update($id, $this->request->getPost());
+        return redirect()->to('/petugas/stok')->with('success', 'Transaksi stok berhasil diperbarui.');
+    }
+
     public function delete($id)
     {
         (new TransaksiModel())->delete($id);
