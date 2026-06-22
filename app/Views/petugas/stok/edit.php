@@ -1,0 +1,49 @@
+<?php 
+// dd($transaksi);
+// dd($barang);
+?>
+<?= $this->extend('layouts/main') ?>
+
+<?= $this->section('content') ?>
+<h1 class="text-2xl font-bold mb-6">Tambah Transaksi Stok</h1>
+
+<form action="<?= base_url("/petugas/stok/update/{$transaksi['id_transaksi']}") ?>" method="post">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+            <label class="block text-gray-700 mb-1">Barang</label>
+            <select name="id_barang" class="w-full max-w-xs px-3 py-2 border rounded text-md truncate">
+                <option value="">-- Pilih Barang --</option>
+                <?php foreach ($barang as $b) : ?>
+                    <option value="<?= $b['id_barang'] ?>" <?= $b['id_barang'] == $transaksi['id_barang'] ? 'selected' : '' ?>><?= esc($b['kode_barang']) ?> - <?= esc($b['nama_barang']) ?> (Stok: <?= $b['stok'] ?>)</option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+        <div>
+            <label class="block text-gray-700 mb-1">Tipe Transaksi</label>
+            <select name="tipe_transaksi" class="w-full px-3 py-2 border rounded" required>
+                <option value="">-- Pilih --</option>
+                    <option value="<?= $transaksi['id_transaksi'] ?>" <?= $transaksi['tipe_transaksi'] == 'masuk' ? 'selected' : '' ?>>Masuk</option>
+                    <option value="<?= $transaksi['id_transaksi'] ?>" <?= $transaksi['tipe_transaksi'] == 'keluar' ? 'selected' : '' ?> >Keluar</option>
+            </select>
+        </div>
+        <div>
+            <label class="block text-gray-700 mb-1">Jumlah</label>
+            <input type="number" name="jumlah" value="<?= esc($transaksi['jumlah']) ?>" min=" 1" class="w-full px-3 py-2 border rounded" required>
+        </div>
+        <div>
+            <label class="block text-gray-700 mb-1">Tanggal Transaksi</label>
+            <input type="date" name="tanggal_transaksi" value="<?= $transaksi['tanggal_transaksi'] ?>" class="w-full px-3 py-2 border rounded" value="<?= date('Y-m-d') ?>" required>
+        </div>
+        <div>
+            <label class="block text-gray-700 mb-1">Keterangan</label>
+            <textarea name="keterangan" class="w-full px-3 py-2 border rounded" rows="3"><?= $transaksi['keterangan'] ?></textarea>
+        </div>
+    </div>
+
+    <div class="mt-6 flex space-x-3">
+        <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Perbarui Transaksi</button>
+        <a href="<?= base_url('/petugas/stok') ?>" class="px-4 py-2 bg-gray-500 text-white rounded">Batal</a>
+    </div>
+</form>
+
+<?= $this->endSection() ?>
